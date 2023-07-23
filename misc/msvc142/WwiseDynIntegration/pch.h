@@ -13,6 +13,8 @@
 #include <iostream>
 #include <fstream>
 #include <cassert>
+// WwiseSingleton
+#include "WiseSingleton.h"
 // Wwise includes.
 #include <AK/SoundEngine/Common/AkMemoryMgr.h>
 #include <AK/SoundEngine/Common/AkModule.h>

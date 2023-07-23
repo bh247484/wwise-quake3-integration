@@ -252,7 +252,7 @@ void S_Update( void )
 	}
 	
 	// Wise Audio Frame Render.
-	WiseProcessAudio();
+	WiseFrameTick();
 
 	if( si.Update ) {
 		si.Update( );
@@ -482,7 +482,7 @@ void S_Init( void )
 
 	Com_Printf( "------ Initializing Sound ------\n" );
 	// Initialize Wwise.
-	WiseInitSoundEngine();
+	WiseInit();
 
 	s_volume = Cvar_Get( "s_volume", "0.8", CVAR_ARCHIVE );
 	s_musicVolume = Cvar_Get( "s_musicvolume", "0.25", CVAR_ARCHIVE );
@@ -541,7 +541,7 @@ S_Shutdown
 void S_Shutdown( void )
 {
 	// Terminate Wise.
-	WiseTerminateSoundEngine();
+	WiseTerminate();
 
 	if( si.Shutdown ) {
 		si.Shutdown( );

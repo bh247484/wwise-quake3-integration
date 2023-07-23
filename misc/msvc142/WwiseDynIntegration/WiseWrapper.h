@@ -12,13 +12,13 @@
 #define EXTERNC
 #endif
 
-EXTERNC WISEWRAPPER_API int WiseForward(int sfx, int entnum);
+EXTERNC WISEWRAPPER_API void WiseInit();
 
-EXTERNC WISEWRAPPER_API int WiseInitSoundEngine();
+EXTERNC WISEWRAPPER_API void WiseFrameTick();
 
-EXTERNC WISEWRAPPER_API void WiseProcessAudio();
+EXTERNC WISEWRAPPER_API void WiseTerminate();
 
-EXTERNC WISEWRAPPER_API void WiseTerminateSoundEngine();
+EXTERNC WISEWRAPPER_API void WiseForward(int sfx, int entnum);
 
 //WISEWRAPPER_API bool InitSoundEngine();
 

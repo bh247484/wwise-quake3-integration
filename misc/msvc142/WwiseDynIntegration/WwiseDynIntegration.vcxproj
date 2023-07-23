@@ -175,6 +175,7 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="WiseWrapper.h" />
+    <ClInclude Include="WiseSingleton.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\..\..\..\Program Files (x86)\Audiokinetic\Wwise 2022.1.5.8242\SDK\samples\SoundEngine\Common\AkDefaultLowLevelIODispatcher.cpp">
@@ -213,6 +214,7 @@
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="WiseSingleton.cpp" />
     <ClCompile Include="WiseWrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
