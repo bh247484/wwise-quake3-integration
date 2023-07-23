@@ -1,7 +1,16 @@
 #include "pch.h"
-#define BANKNAME_INIT L"Init.bnk"
-
+/**
+* These should be defined over in the header file but couldn't get Ak types recognized there.
+* Luckily this is a Singleton class and these are static values.
+*/
 CAkFilePackageLowLevelIOBlocking g_lowLevelIO;
+/**
+* To keep things simple this declares a single global game object and a single global listener.
+* All events are associated with the global game object which is in turn associated with the global listener.
+* This prohibits spatialization but massively simplifies things for this simple test application/integration. 
+*/
+const AkGameObjectID globalGameObj = 1;
+const AkGameObjectID globalListener = 2;
 
 WiseSingleton::WiseSingleton() {
 }
@@ -79,9 +88,21 @@ int WiseSingleton::InitSoundEngine()
     g_lowLevelIO.SetBasePath(AKTEXT("C:\\Users\\bh247\\Documents\\WwiseProjects\\Quake3\\GeneratedSoundBanks\\Windows"));
     AK::StreamMgr::SetCurrentLanguage(AKTEXT("English(US)"));
 
-    AkBankID bankID; // Not used. These banks can be unloaded with their file name.
-    AKRESULT eResult = AK::SoundEngine::LoadBank(BANKNAME_INIT, bankID);
-    assert(eResult == AK_Success);
+    // Tried to load banks explicitly with AK::BANKS ids in header file, refused to work.
+    AkUniqueID initBankId;
+    AKRESULT initRes = AK::SoundEngine::LoadBank(L"Init.bnk", initBankId);
+    assert(initRes == AK_Success);
+    AkUniqueID mainBankId;
+    AKRESULT mainResult = AK::SoundEngine::LoadBank(L"Main.bnk", mainBankId);
+    assert(mainResult == AK_Success);
+
+    // Register global game obj and associated listener.
+    AK::SoundEngine::RegisterGameObj(globalGameObj, "Global Game Object");
+    AK::SoundEngine::RegisterGameObj(globalListener, "Global Listener");
+    AK::SoundEngine::SetDefaultListeners(&globalListener, 1);
+
+    // Initial sound event trigger, use to play theme music.
+    AK::SoundEngine::PostEvent(AK::EVENTS::PLAY_BLIP, globalGameObj);
 }
 
 void WiseSingleton::ProcessAudio()
@@ -102,8 +123,14 @@ void WiseSingleton::TerminateSoundEngine()
 
 void WiseSingleton::ForwardEvent(int sfx, int entnum)
 {
+    AK::SoundEngine::PostEvent(AK::EVENTS::PLAY_BLIP, globalGameObj);
     std::ofstream debugLog;
     debugLog.open("C:\\Users\\bh247\\Desktop\\debug.txt", std::ios_base::app);
     debugLog << "SFX: " << sfx << "\n";
     debugLog << "Entnum: " << entnum << "\n";
 }
+
+std::unordered_map<int, std::string> eventMap = {
+    { 1, "value1"},
+    { 1, "value2"},
+};
