@@ -13,9 +13,12 @@
 #include <iostream>
 #include <fstream>
 #include <cassert>
+#include <unordered_map>
+#include <string>
 // WwiseSingleton
 #include "WiseSingleton.h"
 // Wwise includes.
+#include <Wwise_IDs.h> // contains bank and events ids in GeneratedSoundBanks header
 #include <AK/SoundEngine/Common/AkMemoryMgr.h>
 #include <AK/SoundEngine/Common/AkModule.h>
 #include <AK/SoundEngine/Common/IAkStreamMgr.h>
