@@ -91,7 +91,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Audiokinetic\Wwise 2022.1.5.8242\SDK\samples\SoundEngine\Common;C:\Program Files %28x86%29\Audiokinetic\Wwise 2022.1.5.8242\SDK\samples\SoundEngine\Win32;C:\Program Files %28x86%29\Audiokinetic\Wwise 2022.1.5.8242\SDK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\bh247\Documents\WwiseProjects\Quake3\GeneratedSoundBanks;C:\Program Files %28x86%29\Audiokinetic\Wwise 2022.1.5.8242\SDK\samples\SoundEngine\Common;C:\Program Files %28x86%29\Audiokinetic\Wwise 2022.1.5.8242\SDK\samples\SoundEngine\Win32;C:\Program Files %28x86%29\Audiokinetic\Wwise 2022.1.5.8242\SDK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
     </ClCompile>
     <Link>
