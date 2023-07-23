@@ -25,6 +25,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "snd_codec.h"
 #include "snd_local.h"
 #include "snd_public.h"
+#include <WiseWrapper.h>
 
 cvar_t *s_volume;
 cvar_t *s_muted;
@@ -82,9 +83,10 @@ S_StartSound
 */
 void S_StartSound( vec3_t origin, int entnum, int entchannel, sfxHandle_t sfx )
 {
-	if( si.StartSound ) {
-		si.StartSound( origin, entnum, entchannel, sfx );
-	}
+	WiseForward(sfx, entnum);
+	//if( si.StartSound ) {
+	//	si.StartSound( origin, entnum, entchannel, sfx );
+	//}
 }
 
 /*
@@ -94,9 +96,10 @@ S_StartLocalSound
 */
 void S_StartLocalSound( sfxHandle_t sfx, int channelNum )
 {
-	if( si.StartLocalSound ) {
-		si.StartLocalSound( sfx, channelNum );
-	}
+	WiseForward(sfx, 0);
+	//if( si.StartLocalSound ) {
+	//	si.StartLocalSound( sfx, channelNum );
+	//}
 }
 
 /*
@@ -248,6 +251,9 @@ void S_Update( void )
 		}
 	}
 	
+	// Wise Audio Frame Render.
+	WiseProcessAudio();
+
 	if( si.Update ) {
 		si.Update( );
 	}
@@ -475,10 +481,12 @@ void S_Init( void )
 	qboolean	started = qfalse;
 
 	Com_Printf( "------ Initializing Sound ------\n" );
+	// Initialize Wwise.
+	WiseInitSoundEngine();
 
 	s_volume = Cvar_Get( "s_volume", "0.8", CVAR_ARCHIVE );
 	s_musicVolume = Cvar_Get( "s_musicvolume", "0.25", CVAR_ARCHIVE );
-	s_muted = Cvar_Get("s_muted", "0", CVAR_ROM);
+	s_muted = Cvar_Get("s_muted", "1", CVAR_ROM);
 	s_doppler = Cvar_Get( "s_doppler", "1", CVAR_ARCHIVE );
 	s_backend = Cvar_Get( "s_backend", "", CVAR_ROM );
 	s_muteWhenMinimized = Cvar_Get( "s_muteWhenMinimized", "0", CVAR_ARCHIVE );
@@ -532,6 +540,9 @@ S_Shutdown
 */
 void S_Shutdown( void )
 {
+	// Terminate Wise.
+	WiseTerminateSoundEngine();
+
 	if( si.Shutdown ) {
 		si.Shutdown( );
 	}
