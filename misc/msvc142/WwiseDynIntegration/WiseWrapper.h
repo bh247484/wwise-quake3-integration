@@ -20,6 +20,6 @@ EXTERNC WISEWRAPPER_API void WiseTerminate();
 
 EXTERNC WISEWRAPPER_API void WiseForward(int sfx, int entnum);
 
-//WISEWRAPPER_API bool InitSoundEngine();
+EXTERNC WISEWRAPPER_API void InterceptSFXName(int hash, const char* name);
 
 #undef EXTERNC
