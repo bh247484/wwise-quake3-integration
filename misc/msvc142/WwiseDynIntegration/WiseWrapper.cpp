@@ -1,26 +1,25 @@
 #include "pch.h"
-#define BANKNAME_INIT L"Init.bnk"
 
-static std::unique_ptr<WiseSingleton> WiseMain = std::make_unique<WiseSingleton>();
+static WiseSingleton WiseMain;
 
 void WiseInit()
 {
-    WiseMain->InitSoundEngine();
+    WiseMain.InitSoundEngine();
 }
 
 void WiseFrameTick()
 {
-    WiseMain->ProcessAudio();
+    WiseMain.ProcessAudio();
 }
 
 void WiseTerminate()
 {
-    WiseMain->TerminateSoundEngine();
+    WiseMain.TerminateSoundEngine();
 }
 
 void WiseForward(int sfx, int entnum)
 {
-    WiseMain->ForwardEvent(sfx, entnum);
+    WiseMain.ForwardEvent(sfx, entnum);
 }
 
 void InterceptSFXName(int hash, const char* name)
