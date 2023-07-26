@@ -121,6 +121,7 @@ void WiseSingleton::TerminateSoundEngine()
     #endif // AK_OPTIMIZED
     AK::MusicEngine::Term();
     AK::SoundEngine::Term();
+    g_lowLevelIO.Term();
     if (AK::IAkStreamMgr::Get()) AK::IAkStreamMgr::Get()->Destroy();
     AK::MemoryMgr::Term();
 }
