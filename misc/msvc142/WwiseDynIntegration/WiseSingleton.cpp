@@ -4,6 +4,10 @@
 * Luckily this is a Singleton class and these are static values.
 */
 CAkFilePackageLowLevelIOBlocking g_lowLevelIO;
+std::unordered_map<int, AkUniqueID> eventMap = {
+    { 2, AK::EVENTS::RHODES_BLIP },
+    { 109, AK::EVENTS::WEAPON_FIRE },
+};
 /**
 * To keep things simple this declares a single global game object and a single global listener.
 * All events are associated with the global game object which is in turn associated with the global listener.
@@ -102,7 +106,7 @@ int WiseSingleton::InitSoundEngine()
     AK::SoundEngine::SetDefaultListeners(&globalListener, 1);
 
     // Initial sound event trigger, use to play theme music.
-    AK::SoundEngine::PostEvent(AK::EVENTS::PLAY_BLIP, globalGameObj);
+    AK::SoundEngine::PostEvent(AK::EVENTS::INIT_MUSIC, globalGameObj);
 }
 
 void WiseSingleton::ProcessAudio()
@@ -123,14 +127,11 @@ void WiseSingleton::TerminateSoundEngine()
 
 void WiseSingleton::ForwardEvent(int sfx, int entnum)
 {
-    AK::SoundEngine::PostEvent(AK::EVENTS::PLAY_BLIP, globalGameObj);
+    if (eventMap[sfx]) {
+        AK::SoundEngine::PostEvent(eventMap[sfx], globalGameObj);
+    }
     std::ofstream debugLog;
     debugLog.open("C:\\Users\\bh247\\Desktop\\debug.txt", std::ios_base::app);
     debugLog << "SFX: " << sfx << "\n";
     debugLog << "Entnum: " << entnum << "\n";
 }
-
-std::unordered_map<int, std::string> eventMap = {
-    { 1, "value1"},
-    { 1, "value2"},
-};
