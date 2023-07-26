@@ -23,12 +23,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include "client.h"
 #include <limits.h>
-#include <stdio.h>
 
 #include "../sys/sys_local.h"
 #include "../sys/sys_loadlib.h"
-
-#include <WiseWrapper.h>
 
 #ifdef USE_MUMBLE
 #include "libmumblelink.h"
@@ -3166,8 +3163,6 @@ void CL_StartHunkUsers( qboolean rendererOnly ) {
 	if ( !cls.soundStarted ) {
 		cls.soundStarted = qtrue;
 		S_Init();
-		//int test = WiseForward(2);
-		//int test2 = test;
 	}
 
 	if ( !cls.soundRegistered ) {
