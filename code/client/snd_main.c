@@ -25,6 +25,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "snd_codec.h"
 #include "snd_local.h"
 #include "snd_public.h"
+#include <WiseWrapper.h>
 
 cvar_t *s_volume;
 cvar_t *s_muted;
@@ -82,9 +83,10 @@ S_StartSound
 */
 void S_StartSound( vec3_t origin, int entnum, int entchannel, sfxHandle_t sfx )
 {
-	if( si.StartSound ) {
-		si.StartSound( origin, entnum, entchannel, sfx );
-	}
+	WiseForward(sfx, entnum);
+	// if( si.StartSound ) {
+	// 	si.StartSound( origin, entnum, entchannel, sfx );
+	// }
 }
 
 /*
@@ -94,9 +96,10 @@ S_StartLocalSound
 */
 void S_StartLocalSound( sfxHandle_t sfx, int channelNum )
 {
-	if( si.StartLocalSound ) {
-		si.StartLocalSound( sfx, channelNum );
-	}
+	WiseForward(sfx, 0);
+	// if( si.StartLocalSound ) {
+	// 	si.StartLocalSound( sfx, channelNum );
+	// }
 }
 
 /*
@@ -106,9 +109,9 @@ S_StartBackgroundTrack
 */
 void S_StartBackgroundTrack( const char *intro, const char *loop )
 {
-	if( si.StartBackgroundTrack ) {
-		si.StartBackgroundTrack( intro, loop );
-	}
+	// if( si.StartBackgroundTrack ) {
+	// 	si.StartBackgroundTrack( intro, loop );
+	// }
 }
 
 /*
@@ -118,9 +121,9 @@ S_StopBackgroundTrack
 */
 void S_StopBackgroundTrack( void )
 {
-	if( si.StopBackgroundTrack ) {
-		si.StopBackgroundTrack( );
-	}
+	// if( si.StopBackgroundTrack ) {
+	// 	si.StopBackgroundTrack( );
+	// }
 }
 
 /*
@@ -131,8 +134,8 @@ S_RawSamples
 void S_RawSamples (int stream, int samples, int rate, int width, int channels,
 		   const byte *data, float volume, int entityNum)
 {
-	if(si.RawSamples)
-		si.RawSamples(stream, samples, rate, width, channels, data, volume, entityNum);
+	// if(si.RawSamples)
+	// 	si.RawSamples(stream, samples, rate, width, channels, data, volume, entityNum);
 }
 
 /*
@@ -248,6 +251,9 @@ void S_Update( void )
 		}
 	}
 	
+	// Wise Audio Frame Render.
+	WiseFrameTick();
+
 	if( si.Update ) {
 		si.Update( );
 	}
@@ -475,6 +481,8 @@ void S_Init( void )
 	qboolean	started = qfalse;
 
 	Com_Printf( "------ Initializing Sound ------\n" );
+	// Initialize Wwise.
+	WiseInit();
 
 	s_volume = Cvar_Get( "s_volume", "0.8", CVAR_ARCHIVE );
 	s_musicVolume = Cvar_Get( "s_musicvolume", "0.25", CVAR_ARCHIVE );
@@ -532,6 +540,9 @@ S_Shutdown
 */
 void S_Shutdown( void )
 {
+	// Terminate Wise.
+	WiseTerminate();
+
 	if( si.Shutdown ) {
 		si.Shutdown( );
 	}

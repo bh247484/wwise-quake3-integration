@@ -32,6 +32,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "snd_local.h"
 #include "snd_codec.h"
 #include "client.h"
+#include <WiseWrapper.h>
 
 void S_Update_( void );
 void S_Base_StopAllSounds(void);
@@ -276,6 +277,8 @@ static sfx_t *S_FindName( const char *name ) {
 	}
 
 	hash = S_HashSFXName(name);
+
+	InterceptSFXName(hash, name);
 
 	sfx = sfxHash[hash];
 	// see if already loaded
