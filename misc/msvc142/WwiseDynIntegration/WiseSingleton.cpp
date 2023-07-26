@@ -3,8 +3,8 @@
 * These should be defined over in the header file but couldn't get Ak types recognized there.
 * Luckily this is a Singleton class and these are static values.
 */
-CAkFilePackageLowLevelIOBlocking g_lowLevelIO;
-std::unordered_map<int, AkUniqueID> eventMap = {
+static CAkFilePackageLowLevelIOBlocking g_lowLevelIO;
+static std::unordered_map<int, AkUniqueID> eventMap = {
     { 2, AK::EVENTS::RHODES_BLIP },
     { 109, AK::EVENTS::WEAPON_FIRE },
 };
@@ -13,8 +13,8 @@ std::unordered_map<int, AkUniqueID> eventMap = {
 * All events are associated with the global game object which is in turn associated with the global listener.
 * This prohibits spatialization but massively simplifies things for this simple test application/integration. 
 */
-const AkGameObjectID globalGameObj = 1;
-const AkGameObjectID globalListener = 2;
+static const AkGameObjectID globalGameObj = 1;
+static const AkGameObjectID globalListener = 2;
 
 WiseSingleton::WiseSingleton() {
 }

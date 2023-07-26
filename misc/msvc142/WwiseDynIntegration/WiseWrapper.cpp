@@ -1,7 +1,7 @@
 #include "pch.h"
 #define BANKNAME_INIT L"Init.bnk"
 
-std::unique_ptr<WiseSingleton> WiseMain = std::make_unique<WiseSingleton>();
+static std::unique_ptr<WiseSingleton> WiseMain = std::make_unique<WiseSingleton>();
 
 void WiseInit()
 {
