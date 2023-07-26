@@ -1,4 +1,5 @@
 #include "pch.h"
+
 /**
 * These should be defined over in the header file but couldn't get Ak types recognized there.
 * Luckily this is a Singleton class and these are static values.
@@ -11,7 +12,7 @@ static std::unordered_map<int, AkUniqueID> eventMap = {
 /**
 * To keep things simple this declares a single global game object and a single global listener.
 * All events are associated with the global game object which is in turn associated with the global listener.
-* This prohibits spatialization but massively simplifies things for this simple test application/integration. 
+* This precludes multi object/listener spatialization but massively simplifies things for this simple test application/integration. 
 */
 static const AkGameObjectID globalGameObj = 1;
 static const AkGameObjectID globalListener = 2;
@@ -44,7 +45,6 @@ int WiseSingleton::InitSoundEngine()
     }
 
     // System/OS Device IO.
-    //CAkFilePackageLowLevelIOBlocking g_lowLevelIO;
     AkDeviceSettings deviceSettings;
     AK::StreamMgr::GetDefaultDeviceSettings(deviceSettings);
 

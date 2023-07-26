@@ -84,9 +84,9 @@ S_StartSound
 void S_StartSound( vec3_t origin, int entnum, int entchannel, sfxHandle_t sfx )
 {
 	WiseForward(sfx, entnum);
-	//if( si.StartSound ) {
-	//	si.StartSound( origin, entnum, entchannel, sfx );
-	//}
+	// if( si.StartSound ) {
+	// 	si.StartSound( origin, entnum, entchannel, sfx );
+	// }
 }
 
 /*
@@ -97,9 +97,9 @@ S_StartLocalSound
 void S_StartLocalSound( sfxHandle_t sfx, int channelNum )
 {
 	WiseForward(sfx, 0);
-	//if( si.StartLocalSound ) {
-	//	si.StartLocalSound( sfx, channelNum );
-	//}
+	// if( si.StartLocalSound ) {
+	// 	si.StartLocalSound( sfx, channelNum );
+	// }
 }
 
 /*
@@ -109,9 +109,9 @@ S_StartBackgroundTrack
 */
 void S_StartBackgroundTrack( const char *intro, const char *loop )
 {
-	//if( si.StartBackgroundTrack ) {
-	//	si.StartBackgroundTrack( intro, loop );
-	//}
+	// if( si.StartBackgroundTrack ) {
+	// 	si.StartBackgroundTrack( intro, loop );
+	// }
 }
 
 /*
@@ -121,9 +121,9 @@ S_StopBackgroundTrack
 */
 void S_StopBackgroundTrack( void )
 {
-	//if( si.StopBackgroundTrack ) {
-	//	si.StopBackgroundTrack( );
-	//}
+	// if( si.StopBackgroundTrack ) {
+	// 	si.StopBackgroundTrack( );
+	// }
 }
 
 /*
@@ -134,8 +134,8 @@ S_RawSamples
 void S_RawSamples (int stream, int samples, int rate, int width, int channels,
 		   const byte *data, float volume, int entityNum)
 {
-	//if(si.RawSamples)
-	//	si.RawSamples(stream, samples, rate, width, channels, data, volume, entityNum);
+	// if(si.RawSamples)
+	// 	si.RawSamples(stream, samples, rate, width, channels, data, volume, entityNum);
 }
 
 /*
