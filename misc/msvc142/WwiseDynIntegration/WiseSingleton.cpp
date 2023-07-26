@@ -1,8 +1,8 @@
 #include "pch.h"
 
 /**
-* These should be defined over in the header file but couldn't get Ak types recognized there.
-* Luckily this is a Singleton class and these are static values.
+* These should be defined over in the header file as member variables but couldn't get Ak types recognized there.
+* Luckily this is a Singleton class and these are private, static values.
 */
 static CAkFilePackageLowLevelIOBlocking g_lowLevelIO;
 static std::unordered_map<int, AkUniqueID> eventMap = {
