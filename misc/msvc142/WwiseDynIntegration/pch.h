@@ -15,8 +15,6 @@
 #include <cassert>
 #include <unordered_map>
 #include <string>
-// WwiseSingleton
-#include "WiseSingleton.h"
 // Wwise includes.
 #include <Wwise_IDs.h> // contains bank and events ids in GeneratedSoundBanks header
 #include <AK/SoundEngine/Common/AkMemoryMgr.h>
@@ -30,11 +28,8 @@
 #include <AkFilePackageLowLevelIOBlocking.h>
 #include <AkFilePackage.h>
 #include <AkFilePackageLUT.h>
-// Test
-//#include <AkPlatformProfilerHooks.h>
-//#include <AkDefaultLowLevelIODispatcher.h>
-//#include <AkFileLocationBase.h>
 // Custom implementation includes.
 #include "WiseWrapper.h"
+#include "WiseSingleton.h"
 
 #endif //PCH_H
